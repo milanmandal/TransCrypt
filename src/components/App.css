@@ -1,1 +1,8 @@
-/* Styles go here */
+html{
+    color: blanchedalmond;
+}/* Styles go here */
+
+.top
+{
+    margin-top:10%
+}

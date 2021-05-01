@@ -26,11 +26,13 @@ class App extends Component {
   async loadBlockchainData() {
     const web3 = window.web3
     const accounts = await web3.eth.getAccounts()
+    console.log(accounts);
     this.setState({ account: accounts[0] })
-    const daiTokenAddress = "0x7b729B07EcBDEd8879Acf997aAF6546926982830" // Replace DAI Address Here
+    const daiTokenAddress = "0x03aa74796A3E1f8f74fE3812D21C7596F5c3DCde" // Replace DAI Address Here
     const daiTokenMock = new web3.eth.Contract(DaiTokenMock.abi, daiTokenAddress)
     this.setState({ daiTokenMock: daiTokenMock })
     const balance = await daiTokenMock.methods.balanceOf(this.state.account).call()
+    console.log(balance);
     this.setState({ balance: web3.utils.fromWei(balance.toString(), 'Ether') })
     const transactions = await daiTokenMock.getPastEvents('Transfer', { fromBlock: 0, toBlock: 'latest', filter: { from: this.state.account } })
     this.setState({ transactions: transactions })
@@ -58,20 +60,20 @@ class App extends Component {
       <div>
         <nav className="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
           <a
-            className="navbar-brand col-sm-3 col-md-2 mr-0"
-            href="http://www.dappuniversity.com/bootcamp"
+            className="navbar-brand col-sm-3 col-md-2 mr-0 bg-dark"
+            href="https://github.com/milanmandal/TransCrypt.git"
             target="_blank"
             rel="noopener noreferrer"
           >
-            Dapp University
+            TransCrypt
           </a>
         </nav>
-        <div className="container-fluid mt-5">
+        <div className="container bg-dark top text-light">
           <div className="row">
             <main role="main" className="col-lg-12 d-flex text-center">
-              <div className="content mr-auto ml-auto" style={{ width: "500px" }}>
+              <div className="content mr-auto ml-auto" style={{ width: "400px" }}>
                 <a
-                  href="http://www.dappuniversity.com/bootcamp"
+                  href="#"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -104,7 +106,7 @@ class App extends Component {
                   </div>
                   <button type="submit" className="btn btn-primary btn-block">Send</button>
                 </form>
-                <table className="table">
+                <table className="table text-light">
                   <thead>
                     <tr>
                       <th scope="col">Recipient</th>
